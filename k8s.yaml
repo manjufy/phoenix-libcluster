@@ -1,0 +1,84 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: phoenix-libcluster
+  labels:
+    app: phoenix-libcluster
+    tier: phoenix-libcluster
+spec:
+  type: LoadBalancer
+  ports:
+    # the port that this service should serve on
+  - port: 8080
+  selector:
+    app: phoenix-libcluster
+    tier: phoenix-libcluster
+---
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: phoenix-libcluster
+  # these labels can be applied automatically
+  # from the labels in the pod template if not set
+  labels:
+    app: phoenix-libcluster
+    tier: phoenix-libcluster
+spec:
+  # this replicas value is default
+  # modify it according to your case
+  replicas: 3
+  # selector can be applied automatically
+  # from the labels in the pod template if not set
+  # selector:
+  #   app: guestbook
+  #   tier: frontend
+  template:
+    metadata:
+      labels:
+        app: phoenix-libcluster
+        tier: phoenix-libcluster
+    spec:
+      containers:
+      - name: phoenix-libcluster
+        image: phoenix-libcluster:v1
+        imagePullPolicy: IfNotPresent
+        #args: ["mix", "phoenix.server", "--no-deps-check", "--no-compile", "--no-halt"]
+        args:
+        #-  date | md5sum | tr -d '\n' > .nomnom && elixir --name $(MY_POD_NAMESPACE)@$(MY_POD_IP) -S mix && MIX_ENV=prod PORT=80 mix phoenix.server
+        #- echo 'manju' | tr -d '\n' > .nomnom && elixir --name $(MY_POD_NAMESPACE)@$(MY_POD_IP) -S mix && mix phoenix.server
+        - PORT=8080 elixir --name phoenix-libcluster@$(hostname -I) -S mix phoenix.server
+        command:
+        - /bin/bash
+        - -c
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        env:
+        - name: PORT
+          value: "8080"
+        - name: MY_BASENAME
+          value: phoenix-libcluster
+        - name: MY_POD_NAMESPACE
+          value: phoenix-libcluster
+        - name: MY_POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        - name: MY_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        # - name: REPLACE_OS_VARS
+        #   value: "true"
+        # - name: RELEASE_CONFIG_DIR
+        #   value: /beamconfig
+        ports:
+        - containerPort: 8080
+      #   volumeMounts:
+      #   - name: config-volume
+      #     mountPath: /beamconfig
+      # volumes:
+      # - name: config-volume
+      #   configMap:
+      #     name: vm-config

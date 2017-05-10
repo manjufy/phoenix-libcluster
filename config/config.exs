@@ -35,10 +35,11 @@ config :logger, :console,
 
 config :libcluster,
     topologies: [
-      epmd: [
-        strategy: Cluster.Strategy.Epmd,
+      k8s: [
+        strategy: Cluster.Strategy.Kubernetes,
         config: [
-          hosts: [:"n1@127.0.0.1", :"n2@127.0.0.1"]
+          kubernetes_selector: "app=phoenix-libcluster",
+          kubernetes_node_basename: "phoenix-libcluster"
         ]
       ]
   ]

@@ -22,6 +22,10 @@ PORT=4001 elixir --name n2@127.0.0.1 -S mix phoenix.server
 
 In development, the topology is fixed and uses the built-in erlang discovery.
 
+### Docker
+
+`docker build -t phoenix-libcluster:v1 .`
+
 #### References
 
 http://learnyousomeerlang.com/distribunomicon
@@ -30,3 +34,8 @@ http://bitwalker.org/posts/2016-08-04-clustering-in-kubernetes/
 https://github.com/NetComposer/nkcluster
 http://erlangonxen.org/more/clustering
 https://dockyard.com/blog/2016/01/28/running-elixir-and-phoenix-projects-on-a-cluster-of-nodes
+
+### Kubernetes
+
+https://kubernetes.io/docs/tutorials/stateless-application/hello-minikube/
+https://kubernetes.io/docs/getting-started-guides/minikube/
