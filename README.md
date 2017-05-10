@@ -22,10 +22,11 @@ PORT=4001 elixir --name n2@127.0.0.1 -S mix phoenix.server
 
 In development, the topology is fixed and uses the built-in erlang discovery.
 
-## Learn more
+#### References
 
-  * Official website: http://www.phoenixframework.org/
-  * Guides: http://phoenixframework.org/docs/overview
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+http://learnyousomeerlang.com/distribunomicon
+https://github.com/bitwalker/libcluster
+http://bitwalker.org/posts/2016-08-04-clustering-in-kubernetes/
+https://github.com/NetComposer/nkcluster
+http://erlangonxen.org/more/clustering
+https://dockyard.com/blog/2016/01/28/running-elixir-and-phoenix-projects-on-a-cluster-of-nodes
