@@ -1,0 +1,7 @@
+<div class="jumbotron">
+  <h2><%= gettext "Automatic cluster formation for Elixir apps." %></h2>
+</div>
+
+<div class="row marketing">
+  <pre><%= inspect([Node.self] ++ Node.list) %></pre>
+</div>
