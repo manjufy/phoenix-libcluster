@@ -5,3 +5,5 @@
 <div class="row marketing">
   <pre><%= inspect([Node.self] ++ Node.list) %></pre>
 </div>
+
+<h3>Status: <%= @content %></h3>

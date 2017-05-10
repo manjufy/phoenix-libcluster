@@ -14,6 +14,7 @@ defmodule PhoenixLibcluster do
       supervisor(PhoenixLibcluster.Endpoint, []),
       # Start your own worker by calling: PhoenixLibcluster.Worker.start_link(arg1, arg2, arg3)
       # worker(PhoenixLibcluster.Worker, [arg1, arg2, arg3]),
+      worker(HelloCluster, [:status_message]),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
