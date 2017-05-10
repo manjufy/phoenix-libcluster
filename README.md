@@ -11,6 +11,15 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
 
+### Run clustering Locally
+
+To make this work, local dev servers need to be started in "named" mode. For example, to start 2 named nodes on the same machine:
+
+PORT=4000 elixir --name n1@127.0.0.1 -S mix phoenix.server &
+PORT=4001 elixir --name n2@127.0.0.1 -S mix phoenix.server
+
+In development, the topology is fixed and uses the built-in erlang discovery.
+
 ## Learn more
 
   * Official website: http://www.phoenixframework.org/
