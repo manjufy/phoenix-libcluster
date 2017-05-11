@@ -39,12 +39,16 @@ https://dockyard.com/blog/2016/01/28/running-elixir-and-phoenix-projects-on-a-cl
 
 * Install minikube (https://kubernetes.io/docs/tutorials/stateless-application/hello-minikube/)
 * Create a Docker container image
-  `eval $(minikube docker-env)`
-  `docker build -t libcluster:v1 .`
+  ```
+  eval $(minikube docker-env)
+  docker build -t libcluster:v1 .
+  ```
 * Create Kubernetes deployment file
   `kubectl create -f k8s.yaml`
+  
 * See Pods
   `kubectl get pods`
+  
 * Run the Service
   `minikube service phoenix-libcluster`
 
