@@ -30,6 +30,6 @@ RUN mkdir /app
 COPY . /app
 
 WORKDIR /app
-RUN mix deps.get
-RUN date | md5sum | tr -d '\n' > .nomnom
+#RUN mix deps.get
+RUN echo 'manju' | tr -d '\n' > .nomnom
 #CMD PORT=8080 mix phoenix.server

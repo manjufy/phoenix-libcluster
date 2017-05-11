@@ -40,13 +40,14 @@ spec:
     spec:
       containers:
       - name: phoenix-libcluster
-        image: phoenix-libcluster:v1
+        image: libcluster:v1
         imagePullPolicy: IfNotPresent
         #args: ["mix", "phoenix.server", "--no-deps-check", "--no-compile", "--no-halt"]
         args:
         #-  date | md5sum | tr -d '\n' > .nomnom && elixir --name $(MY_POD_NAMESPACE)@$(MY_POD_IP) -S mix && MIX_ENV=prod PORT=80 mix phoenix.server
         #- echo 'manju' | tr -d '\n' > .nomnom && elixir --name $(MY_POD_NAMESPACE)@$(MY_POD_IP) -S mix && mix phoenix.server
-        - PORT=8080 elixir --name phoenix-libcluster@$(hostname -I) -S mix phoenix.server
+        # PORT=8080 elixir --cookie manju --name phoenix-libcluster@$(hostname -I) -S mix phoenix.server
+        - mix deps.get && mix compile && PORT=8080 elixir --name phoenix-libcluster@$(hostname -I) -S mix phoenix.server
         command:
         - /bin/bash
         - -c
@@ -69,16 +70,5 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-        # - name: REPLACE_OS_VARS
-        #   value: "true"
-        # - name: RELEASE_CONFIG_DIR
-        #   value: /beamconfig
         ports:
         - containerPort: 8080
-      #   volumeMounts:
-      #   - name: config-volume
-      #     mountPath: /beamconfig
-      # volumes:
-      # - name: config-volume
-      #   configMap:
-      #     name: vm-config
