@@ -26,15 +26,6 @@ In development, the topology is fixed and uses the built-in erlang discovery.
 
 `docker build -t phoenix-libcluster:v1 .`
 
-#### References
-
-http://learnyousomeerlang.com/distribunomicon
-https://github.com/bitwalker/libcluster
-http://bitwalker.org/posts/2016-08-04-clustering-in-kubernetes/
-https://github.com/NetComposer/nkcluster
-http://erlangonxen.org/more/clustering
-https://dockyard.com/blog/2016/01/28/running-elixir-and-phoenix-projects-on-a-cluster-of-nodes
-
 ### Run on Kubernetes
 
 * Install minikube (https://kubernetes.io/docs/tutorials/stateless-application/hello-minikube/)
@@ -53,5 +44,11 @@ https://dockyard.com/blog/2016/01/28/running-elixir-and-phoenix-projects-on-a-cl
   `minikube service phoenix-libcluster`
 
 
+#### References
 
-https://kubernetes.io/docs/getting-started-guides/minikube/
+* http://learnyousomeerlang.com/distribunomicon
+* https://github.com/bitwalker/libcluster
+* http://bitwalker.org/posts/2016-08-04-clustering-in-kubernetes/
+* https://github.com/NetComposer/nkcluster
+* http://erlangonxen.org/more/clustering
+* https://dockyard.com/blog/2016/01/28/running-elixir-and-phoenix-projects-on-a-cluster-of-nodes
