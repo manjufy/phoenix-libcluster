@@ -25,8 +25,13 @@ In development, the topology is fixed and uses the built-in erlang discovery.
 #### References
 
 http://learnyousomeerlang.com/distribunomicon
+
 https://github.com/bitwalker/libcluster
+
 http://bitwalker.org/posts/2016-08-04-clustering-in-kubernetes/
+
 https://github.com/NetComposer/nkcluster
+
 http://erlangonxen.org/more/clustering
+
 https://dockyard.com/blog/2016/01/28/running-elixir-and-phoenix-projects-on-a-cluster-of-nodes
