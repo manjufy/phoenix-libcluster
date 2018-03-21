@@ -18,7 +18,7 @@ defmodule PhoenixLibcluster.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {PhoenixLibcluster, []},
-     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext, :libcluster]]
+     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext]]
   end
 
   # Specifies which paths to compile per environment.
@@ -37,8 +37,7 @@ defmodule PhoenixLibcluster.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
-     {:libcluster, "~> 2.1"},
-     {:poison, "~> 1.5.0", override: true}]
+     {:libcluster, "~> 2.0"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

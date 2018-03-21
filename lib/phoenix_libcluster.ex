@@ -6,6 +6,8 @@ defmodule PhoenixLibcluster do
   def start(_type, _args) do
     import Supervisor.Spec
 
+    setup_cluster_mode()
+
     # Define workers and child supervisors to be supervised
     children = [
       # Start the Ecto repository
@@ -28,5 +30,31 @@ defmodule PhoenixLibcluster do
   def config_change(changed, _new, removed) do
     PhoenixLibcluster.Endpoint.config_change(changed, removed)
     :ok
+  end
+
+  # Set the cookie here instead of on the command line so it's not shown in the process list.
+  defp setup_cluster_mode do
+    require Logger
+
+    Logger.info("Node alive=#{Node.alive?}")
+    Logger.info("Environment is #{Mix.env}")
+    Logger.info("Node List #{Node.list}")
+
+    with true <- Node.alive?,
+         { :ok, cookie } <- File.read(".nomnom")
+    do
+      cookie
+      |> String.to_atom
+      |> Node.set_cookie
+
+      Logger.info("COOKIE #{Node.get_cookie}")
+      Application.ensure_all_started(:libcluster)
+    else
+      false ->
+        Logger.error("Application started without a name, cannot start cluster.")
+
+      { :error, _ } = error ->
+        Logger.error("Cookie file isn't present, cannot start cluster: #{inspect error}")
+    end
   end
 end

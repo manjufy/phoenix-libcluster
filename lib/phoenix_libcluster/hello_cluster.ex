@@ -1,5 +1,6 @@
 defmodule HelloCluster do
   use GenServer
+  require Logger
 
   def start_link(status_message) do
     name = "Donal Trump is in WHITE HOUSE!"
